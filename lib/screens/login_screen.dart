@@ -5,6 +5,7 @@ import '../data/mock_database.dart';
 import '../models/user_model.dart';
 import '../widgets/custom_text_field.dart';
 import 'forgot_password_screen.dart';
+import 'main_shell.dart';
 import 'register_screen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -75,19 +76,11 @@ class _LoginScreenState extends State<LoginScreen> {
     if (!mounted) return;
 
     if (user != null) {
-      // Login Berhasil
-      showDialog(
-        context: context,
-        builder: (context) => AlertDialog(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-          title: const Text('Login Berhasil'),
-          content: Text('Selamat datang kembali, ${user.namaLengkap}!'),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(context),
-              child: const Text('OK'),
-            ),
-          ],
+      // Login Berhasil -> Masuk ke MainShell (Beranda)
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const MainShell(),
         ),
       );
     } else {
